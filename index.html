@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secondary Research for Case Studies — SCHM 2301 &amp; 3301 | Northeastern University</title>
+  <meta name="description" content="An interactive tutorial guiding supply chain students through secondary research strategies for case study analysis.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    :root {
+      --nu-red:        #C8102E;
+      --nu-red-dark:   #9E0B24;
+      --nu-red-tint:   #F9E5E8;
+      --nu-red-border: #E8B8C0;
+      --text-primary:   #1A1A1A;
+      --text-secondary: #3A3A3A;
+      --text-muted:     #4D4D4D;
+      --bg-page:    #F4F4F5;
+      --bg-white:   #FFFFFF;
+      --bg-subtle:  #F8F8F8;
+      --border:     #C7C7C7;
+      --border-dark:#999999;
+      --focus:      #0055CC;
+      --success:    #145A32;
+      --info-bg:    #EBF3FF;
+      --info-border:#7EB8F7;
+      --info-text:  #0C3B72;
+      --tip-bg:     #EDFAF3;
+      --tip-border: #7ECBA1;
+      --tip-text:   #0D4D26;
+      --warn-bg:    #FFF8E6;
+      --warn-border:#F5C842;
+      --warn-text:  #5C3D00;
+      --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
+      --font-sans:  'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+      --radius-sm:  4px;
+      --radius:     8px;
+      --radius-lg:  12px;
+      --shadow:     0 1px 4px rgba(0,0,0,0.10), 0 2px 10px rgba(0,0,0,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); font-size: 1rem; line-height: 1.65; color: var(--text-primary); background: var(--bg-page); min-height: 100vh; }
+    .skip-link { position: absolute; top: -100%; left: 0; z-index: 10000; padding: 12px 20px; background: var(--focus); color: #fff; font-family: var(--font-sans); font-weight: 700; font-size: 1rem; text-decoration: none; border-radius: 0 0 var(--radius) 0; transition: top 0.1s; }
+    .skip-link:focus { top: 0; outline: 3px solid #fff; outline-offset: 2px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    #live-region { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+    :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: var(--radius-sm); }
+    :focus:not(:focus-visible) { outline: none; }
+    header { background: var(--nu-red); color: #fff; padding: 0 24px; }
+    .header-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 16px; padding: 14px 0; }
+    .nu-mark { flex-shrink: 0; width: 48px; height: 48px; background: #fff; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
+    .nu-mark svg { display: block; }
+    .header-copy { flex: 1; min-width: 0; }
+    .header-copy h1 { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 700; line-height: 1.2; }
+    .header-copy p { font-size: 0.8rem; opacity: 0.92; margin-top: 2px; font-family: var(--font-sans); }
+    .progress-wrapper { background: var(--bg-white); border-bottom: 2px solid var(--border); }
+    .progress-inner { max-width: 900px; margin: 0 auto; padding: 0 24px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .steps-list { display: flex; align-items: stretch; list-style: none; gap: 0; white-space: nowrap; min-width: min-content; }
+    .step-connector { flex: 0 0 20px; display: flex; align-items: center; justify-content: center; }
+    .step-connector::after { content: ''; display: block; width: 100%; height: 2px; background: var(--border); }
+    .step-connector.done::after { background: var(--success); }
+    .step-btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 2px; background: none; border: none; cursor: default; font-family: var(--font-sans); font-size: 0.78rem; font-weight: 500; color: var(--border-dark); text-decoration: none; }
+    .step-btn[data-state="done"] { color: var(--success); cursor: pointer; }
+    .step-btn[data-state="done"]:hover { text-decoration: underline; }
+    .step-btn[data-state="current"] { color: var(--nu-red); font-weight: 700; }
+    .step-num { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; border: 2px solid currentColor; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; transition: background 0.15s, color 0.15s; }
+    .step-btn[data-state="done"] .step-num { background: var(--success); color: #fff; border-color: var(--success); }
+    .step-btn[data-state="current"] .step-num { background: var(--nu-red); color: #fff; border-color: var(--nu-red); }
+    @media (max-width: 540px) { .step-label-text { display: none; } }
+    main { max-width: 900px; margin: 32px auto 80px; padding: 0 20px; }
+    .step-panel { display: none; }
+    .step-panel[data-active="true"] { display: block; animation: panelIn 0.22s ease both; }
+    @keyframes panelIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .card { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 36px 40px; box-shadow: var(--shadow); }
+    @media (max-width: 600px) { .card { padding: 24px 20px; } }
+    .card-header { border-bottom: 3px solid var(--nu-red); padding-bottom: 14px; margin-bottom: 22px; }
+    .step-counter { font-family: var(--font-sans); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--nu-red); margin-bottom: 6px; }
+    .card h2 { font-family: var(--font-serif); font-size: 1.65rem; font-weight: 700; color: var(--text-primary); line-height: 1.25; }
+    h3 { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 600; color: var(--text-primary); margin: 22px 0 8px; }
+    p { color: var(--text-secondary); margin-bottom: 14px; line-height: 1.7; }
+    ul, ol { margin: 6px 0 16px 22px; color: var(--text-secondary); line-height: 1.7; }
+    li { margin-bottom: 5px; }
+    strong { color: var(--text-primary); font-weight: 600; }
+    a { color: var(--focus); text-decoration: underline; }
+    a:hover { color: #003A99; }
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 26px 0; }
+    .callout { border-radius: var(--radius); padding: 16px 20px; margin: 16px 0; }
+    .callout p { margin: 0; font-size: 0.93rem; line-height: 1.6; }
+    .callout p + p { margin-top: 8px; }
+    .callout-info { background: var(--info-bg); border: 1px solid var(--info-border); border-left: 4px solid var(--nu-red); }
+    .callout-info p { color: var(--info-text); }
+    .callout-info strong { color: #0A2F5E; }
+    .callout-tip { background: var(--tip-bg); border: 1px solid var(--tip-border); border-left: 4px solid var(--success); }
+    .callout-tip p { color: var(--tip-text); }
+    .callout-tip strong { color: var(--success); }
+    .callout-warn { background: var(--warn-bg); border: 1px solid var(--warn-border); border-left: 4px solid #C97B00; }
+    .callout-warn p { color: var(--warn-text); }
+    .case-study { background: var(--bg-subtle); border: 1px solid var(--border); border-left: 4px solid var(--nu-red); border-radius: 0 var(--radius) var(--radius) 0; padding: 22px 26px; margin: 18px 0; }
+    .case-study p { font-size: 0.95rem; color: var(--text-secondary); }
+    .case-study-byline { font-size: 0.78rem; color: var(--text-muted); font-style: italic; margin-bottom: 14px !important; }
+    .code-block { background: var(--bg-subtle); border: 1px dashed var(--border-dark); border-radius: var(--radius); padding: 13px 16px; font-family: 'Courier New', 'Consolas', monospace; font-size: 0.875rem; color: var(--text-primary); margin: 10px 0; overflow-x: auto; white-space: pre-wrap; word-break: break-word; }
+    .form-group { margin-bottom: 26px; }
+    .form-label { display: block; font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+    .form-label .req { color: var(--nu-red); margin-left: 3px; }
+    .hint { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; line-height: 1.5; display: block; }
+    input[type="text"], textarea { display: block; width: 100%; font-family: var(--font-sans); font-size: 1rem; color: var(--text-primary); background: var(--bg-white); border: 2px solid var(--border-dark); border-radius: var(--radius); padding: 10px 14px; line-height: 1.55; transition: border-color 0.15s; }
+    input[type="text"]:focus, textarea:focus { border-color: var(--focus); }
+    input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: #B91C1C; border-width: 2px; }
+    textarea { resize: vertical; min-height: 110px; }
+    .error-msg { display: none; margin-top: 6px; font-size: 0.875rem; font-weight: 600; color: #9B0000; font-family: var(--font-sans); }
+    .error-msg[aria-hidden="false"] { display: flex; align-items: flex-start; gap: 6px; }
+    .error-icon { flex-shrink: 0; width: 16px; height: 16px; margin-top: 1px; }
+    fieldset { border: none; padding: 0; margin: 0; min-width: 0; }
+    legend { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; padding: 0; display: block; width: 100%; max-width: 100%; box-sizing: border-box; }
+    .radio-group { display: flex; flex-direction: column; gap: 11px; }
+    .radio-card { position: relative; }
+    .radio-card input[type="radio"] { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+    .radio-card-label { display: flex; align-items: flex-start; gap: 14px; padding: 15px 18px; border: 2px solid var(--border-dark); border-radius: var(--radius); cursor: pointer; font-weight: 400; font-family: var(--font-sans); background: var(--bg-white); transition: border-color 0.15s, background 0.12s; }
+    .radio-card-label:hover { border-color: var(--nu-red); background: var(--nu-red-tint); }
+    .radio-card input[type="radio"]:checked + .radio-card-label { border-color: var(--nu-red); background: var(--nu-red-tint); }
+    .radio-card input[type="radio"]:focus-visible + .radio-card-label { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: var(--radius); }
+    .radio-indicator { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--border-dark); display: flex; align-items: center; justify-content: center; margin-top: 1px; transition: border-color 0.12s, background 0.12s; }
+    .radio-card input[type="radio"]:checked + .radio-card-label .radio-indicator { background: var(--nu-red); border-color: var(--nu-red); }
+    .radio-dot { width: 9px; height: 9px; border-radius: 50%; background: transparent; transition: background 0.12s; }
+    .radio-card input[type="radio"]:checked + .radio-card-label .radio-dot { background: #fff; }
+    .radio-text strong { display: block; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; font-size: 0.95rem; }
+    .radio-text span { font-size: 0.86rem; color: var(--text-muted); line-height: 1.5; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font-sans); font-size: 1rem; font-weight: 600; padding: 11px 24px; min-height: 44px; min-width: 44px; border-radius: var(--radius); border: 2px solid transparent; cursor: pointer; text-decoration: none; transition: background 0.15s, border-color 0.15s, color 0.15s; white-space: nowrap; }
+    .btn-primary { background: var(--nu-red); color: #fff; border-color: var(--nu-red); }
+    .btn-primary:hover { background: var(--nu-red-dark); border-color: var(--nu-red-dark); }
+    .btn-secondary { background: var(--bg-white); color: var(--text-primary); border-color: var(--border-dark); }
+    .btn-secondary:hover { background: var(--bg-subtle); border-color: var(--text-muted); }
+    .btn-success { background: var(--success); color: #fff; border-color: var(--success); }
+    .btn-success:hover { background: #0E3F24; border-color: #0E3F24; }
+    .btn-group { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; justify-content: flex-end; }
+    @media (max-width: 480px) { .btn { width: 100%; } .btn-group { flex-direction: column-reverse; } }
+    .summary-item { margin-bottom: 20px; }
+    .summary-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--nu-red); margin-bottom: 5px; font-family: var(--font-sans); }
+    .summary-value { background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--radius); padding: 13px 16px; font-family: var(--font-sans); font-size: 0.93rem; color: var(--text-primary); white-space: pre-wrap; line-height: 1.65; min-height: 42px; }
+    .hero { text-align: center; padding: 28px 16px 24px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 7px; background: var(--nu-red-tint); color: var(--nu-red-dark); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 18px; font-family: var(--font-sans); border: 1px solid var(--nu-red-border); }
+    .hero h2 { font-family: var(--font-serif); font-size: 2rem; font-weight: 700; color: var(--text-primary); line-height: 1.2; margin-bottom: 12px; }
+    .hero p { max-width: 560px; margin: 0 auto 0; font-size: 1.02rem; color: var(--text-secondary); }
+    .completion-check { width: 60px; height: 60px; border-radius: 50%; background: var(--tip-bg); border: 2px solid var(--success); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+    /* Objectives list */
+    .objectives-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0 20px; }
+    @media (max-width: 560px) { .objectives-grid { grid-template-columns: 1fr; } }
+    .objective-item { background: var(--bg-subtle); border: 1px solid var(--border); border-left: 3px solid var(--nu-red); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 11px 14px; }
+    .objective-item p { font-size: 0.82rem; color: var(--text-secondary); margin: 0; line-height: 1.5; }
+    .objective-item strong { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--nu-red); display: block; margin-bottom: 3px; font-family: var(--font-sans); }
+    /* Workflow */
+    .workflow-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 16px 0 24px; }
+    .workflow-step { background: var(--bg-subtle); border: 1px solid var(--border); border-top: 3px solid var(--nu-red); border-radius: var(--radius); padding: 16px; }
+    .workflow-badge { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; margin-bottom: 8px; font-family: var(--font-sans); }
+    .workflow-badge-you { background: #FEE2E2; color: #7F1D1D; }
+    .workflow-badge-youai { background: var(--info-bg); color: var(--info-text); }
+    .workflow-step-title { font-family: var(--font-sans); font-weight: 600; font-size: 0.9rem; color: var(--text-primary); margin-bottom: 6px; }
+    .workflow-step p { font-size: 0.83rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
+    /* AI policy grid */
+    .ai-policy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0 20px; }
+    @media (max-width: 600px) { .ai-policy-grid { grid-template-columns: 1fr; } }
+    .ai-policy-box { border-radius: var(--radius); padding: 16px 18px; }
+    .ai-policy-box-ok { background: var(--tip-bg); border: 1px solid var(--tip-border); border-top: 3px solid var(--success); }
+    .ai-policy-box-no { background: #FEF2F2; border: 1px solid #FCA5A5; border-top: 3px solid #DC2626; }
+    .ai-policy-box h4 { font-family: var(--font-sans); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+    .ai-policy-box-ok h4 { color: var(--success); }
+    .ai-policy-box-no h4 { color: #991B1B; }
+    .ai-policy-box ul { margin: 0 0 0 18px; }
+    .ai-policy-box li { font-size: 0.875rem; margin-bottom: 6px; line-height: 1.5; }
+    .ai-policy-box-ok li { color: var(--tip-text); }
+    .ai-policy-box-no li { color: #7F1D1D; }
+    /* Scenario quiz */
+    .quiz-progress { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 16px; font-family: var(--font-sans); }
+    .scenario-card { border: 2px solid var(--border-dark); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 14px; background: var(--bg-white); transition: border-color 0.15s, background 0.15s; }
+    .scenario-num { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-family: var(--font-sans); }
+    .scenario-text { font-size: 0.95rem; color: var(--text-primary); margin-bottom: 14px; line-height: 1.65; }
+    .scenario-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    .scenario-choice-btn { flex: 1; min-width: 140px; padding: 9px 14px; border-radius: var(--radius); border: 2px solid var(--border-dark); font-family: var(--font-sans); font-size: 0.875rem; font-weight: 600; cursor: pointer; min-height: 44px; background: var(--bg-white); color: var(--text-primary); transition: background 0.12s, border-color 0.12s; }
+    .scenario-choice-btn:hover:not(:disabled) { background: var(--bg-subtle); border-color: var(--text-muted); }
+    .scenario-choice-btn:disabled { cursor: not-allowed; opacity: 0.65; }
+    .scenario-feedback { display: none; margin-top: 12px; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.875rem; line-height: 1.55; font-family: var(--font-sans); }
+    .scenario-card[data-result="correct"] { border-color: var(--success); background: var(--tip-bg); }
+    .scenario-card[data-result="incorrect"] { border-color: #DC2626; background: #FEF2F2; }
+    .scenario-card[data-result="correct"] .scenario-feedback { display: block; background: #D1FAE5; color: #134E2A; }
+    .scenario-card[data-result="incorrect"] .scenario-feedback { display: block; background: #FEE2E2; color: #7F1D1D; }
+    /* =========================================
+       DATABASE RECOMMENDATION CARDS
+    ========================================= */
+    .db-recs-section {
+      margin: 20px 0 24px;
+    }
+
+    .db-recs-label {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--nu-red);
+      margin-bottom: 12px;
+    }
+
+    .db-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      margin-bottom: 10px;
+      background: var(--bg-white);
+    }
+
+    .db-card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 5px;
+      flex-wrap: wrap;
+    }
+
+    .db-name-link {
+      font-weight: 600;
+      font-size: 0.93rem;
+      color: var(--focus);
+      text-decoration: underline;
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .db-tag {
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .db-tag-companies { background: #EDE9FE; color: #4C1D95; }
+    .db-tag-articles  { background: var(--info-bg); color: var(--info-text); }
+    .db-tag-industries{ background: var(--tip-bg); color: var(--success); }
+
+    .db-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0 0 10px;
+      line-height: 1.5;
+    }
+
+    .db-note {
+      display: inline-block;
+      font-size: 0.78rem;
+      color: var(--warn-text);
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      border-radius: var(--radius-sm);
+      padding: 3px 10px;
+      margin-bottom: 10px;
+    }
+
+    .db-how-to {
+      background: var(--bg-subtle);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+    }
+
+    .db-how-to-label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .db-how-to ol {
+      margin: 0 0 0 16px;
+      padding: 0;
+    }
+
+    .db-how-to li {
+      font-size: 0.83rem;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+      line-height: 1.55;
+    }
+
+    .db-recs-footer {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* =========================================
+       PRINT STYLES
+    ========================================= */
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div id="live-region" aria-live="polite" aria-atomic="true" role="status"></div>
+
+<header role="banner">
+  <div class="header-inner">
+    <div class="nu-mark" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <text x="3" y="24" font-family="Georgia, serif" font-size="24" font-weight="700" fill="#C8102E">N</text>
+      </svg>
+    </div>
+    <div class="header-copy">
+      <h1>Secondary Research for Case Studies</h1>
+      <p>SCHM 2301 &amp; 3301 &nbsp;&middot;&nbsp; Northeastern University</p>
+    </div>
+  </div>
+</header>
+
+<nav aria-label="Tutorial steps">
+  <div class="progress-wrapper">
+    <div class="progress-inner">
+      <ol class="steps-list" id="steps-list">
+        <li><button class="step-btn" data-step="0" data-state="current" aria-current="step" aria-disabled="false" aria-label="Step 1: Welcome — current step"><span class="step-num" aria-hidden="true">1</span><span class="step-label-text">Welcome</span></button></li>
+        <li class="step-connector" aria-hidden="true"></li>
+        <li><button class="step-btn" data-step="1" data-state="todo" disabled aria-disabled="true" aria-label="Step 2: Case Study — not yet reached"><span class="step-num" aria-hidden="true">2</span><span class="step-label-text">Case Study</span></button></li>
+        <li class="step-connector" aria-hidden="true"></li>
+        <li><button class="step-btn" data-step="2" data-state="todo" disabled aria-disabled="true" aria-label="Step 3: Choose Company — not yet reached"><span class="step-num" aria-hidden="true">3</span><span class="step-label-text">Company</span></button></li>
+        <li class="step-connector" aria-hidden="true"></li>
+        <li><button class="step-btn" data-step="3" data-state="todo" disabled aria-disabled="true" aria-label="Step 4: Research Strain — not yet reached"><span class="step-num" aria-hidden="true">4</span><span class="step-label-text">Research Strain</span></button></li>
+        <li class="step-connector" aria-hidden="true"></li>
+        <li><button class="step-btn" data-step="4" data-state="todo" disabled aria-disabled="true" aria-label="Step 5: Useful Information — not yet reached"><span class="step-num" aria-hidden="true">5</span><span class="step-label-text">Useful Info</span></button></li>
+        <li class="step-connector" aria-hidden="true"></li>
+        <li><button class="step-btn" data-step="5" data-state="todo" disabled aria-disabled="true" aria-label="Step 6: Keywords — not yet reached"><span class="step-num" aria-hidden="true">6</span><span class="step-label-text">Keywords</span></button></li>
+        <li class="step-connector" aria-hidden="true"></li>
+        <li><button class="step-btn" data-step="6" data-state="todo" disabled aria-disabled="true" aria-label="Step 7: AI Policy — not yet reached"><span class="step-num" aria-hidden="true">7</span><span class="step-label-text">AI Policy</span></button></li>
+        <li class="step-connector" aria-hidden="true"></li>
+        <li><button class="step-btn" data-step="7" data-state="todo" disabled aria-disabled="true" aria-label="Step 8: Review and Download — not yet reached"><span class="step-num" aria-hidden="true">8</span><span class="step-label-text">Review &amp; Download</span></button></li>
+      </ol>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content" tabindex="-1">
+
+  <!-- STEP 0: WELCOME -->
+  <section class="step-panel" id="step-0" data-active="true" aria-labelledby="s0-heading">
+    <div class="card">
+      <div class="hero">
+        <div class="hero-badge" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="#C8102E"/></svg> SCHM 2301 &amp; 3301</div>
+        <h2 id="s0-heading">Secondary Research<br>for Case Studies</h2>
+        <p>This interactive tutorial guides you through researching a supply chain case study using library databases and credible sources — and helps you build a documented research plan.</p>
+      </div>
+
+      <hr class="divider">
+
+      <h3 style="margin-top:0;">Learning Objectives</h3>
+      <p>This tutorial supports the following BSBA program objectives for SCHM 2301 and 3301:</p>
+      <div class="objectives-grid" role="list">
+        <div class="objective-item" role="listitem">
+          <strong>Objective 2 — Diverse Business Contexts</strong>
+          <p>Frame supply chain challenges within their cultural, regulatory, and global operational environment.</p>
+        </div>
+        <div class="objective-item" role="listitem">
+          <strong>Objective 3 — Well-Reasoned Solutions</strong>
+          <p>Identify relevant information, analyze a business problem, and develop evidence-based recommendations.</p>
+        </div>
+        <div class="objective-item" role="listitem">
+          <strong>Objective 3 — Analytical Tools</strong>
+          <p>Select and apply appropriate quantitative and qualitative research tools to support your analysis.</p>
+        </div>
+        <div class="objective-item" role="listitem">
+          <strong>Objective 4 — Communicate Effectively</strong>
+          <p>Build the research foundation needed to present findings and recommendations clearly and persuasively.</p>
+        </div>
+      </div>
+
+      <div class="callout callout-tip" role="note">
+        <p><strong>What you'll do:</strong> Read a real business case study &rarr; choose a company and research focus &rarr; brainstorm what information would be useful &rarr; build keywords for a library database search string &rarr; review the course AI policy and complete a scenario quiz &rarr; download your completed worksheet as a PDF.</p>
+      </div>
+
+      <div class="form-group" style="margin-top: 26px;">
+        <label class="form-label" for="student-name">Your Full Name <span class="req" aria-label="required">*</span></label>
+        <span class="hint" id="name-hint">This will appear on your downloadable PDF worksheet.</span>
+        <input type="text" id="student-name" name="student-name" autocomplete="name" aria-required="true" aria-describedby="name-hint name-error" placeholder="e.g., Jordan Rivera" spellcheck="false">
+        <span class="error-msg" id="name-error" role="alert" aria-hidden="true" aria-live="assertive">
+          <svg class="error-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#9B0000" stroke-width="2"/><path d="M8 5v3.5M8 11h.01" stroke="#9B0000" stroke-width="2" stroke-linecap="round"/></svg>
+          Please enter your full name to begin.
+        </span>
+      </div>
+
+      <div class="btn-group" style="justify-content: flex-start;">
+        <button class="btn btn-primary" onclick="startTutorial()" type="button">
+          Begin Tutorial
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 1: CASE STUDY -->
+  <section class="step-panel" id="step-1" data-active="false" aria-labelledby="s1-heading">
+    <div class="card">
+      <div class="card-header">
+        <p class="step-counter" aria-hidden="true">Step 1 of 7</p>
+        <h2 id="s1-heading">Read the Case Study</h2>
+      </div>
+
+      <p>Read the following case study carefully before continuing. Pay attention to the companies mentioned, the supply chain model being described, and the strategic tensions at play. You will use this material as the basis for your research activity.</p>
+
+      <article class="case-study" aria-label="Case study: Sharing Secrets to Tackle Slavery — Tony's Chocolonely and the Open Chain Model">
+        <h3 style="margin-top: 0; font-size: 1.1rem; color: var(--text-primary);">Sharing Secrets to Tackle Slavery: Tony's Chocolonely and the Open Chain Model</h3>
+        <p class="case-study-byline">Based on reporting from the <em>Financial Times</em>, November 2025</p>
+
+        <p>Tony's Chocolonely is a Dutch chocolate company founded in 2005 by journalist Teun ("Tony") van de Keuken after he investigated slavery and child labor in the cocoa industry. Unlike most businesses, Tony's defines success not by profit margins but by outcomes: child labor rates among partner farms, farmer living income benchmarks, and the strength of co-operative organizations. The company's stated mission is not to sell more chocolate bars — it is to end exploitation in the cocoa supply chain entirely.</p>
+
+        <p>The approach Tony's has taken to pursue that mission is unconventional. Rather than treating its ethical sourcing practices as proprietary assets, the company has built an "Open Chain" platform that makes its entire supply chain framework available for competitors to adopt. The Open Chain model rests on five core principles: traceable cocoa beans mapped via GPS; prices above the Fairtrade premium to move farmers toward a living income; investment in strong farmer co-operatives covering training, governance, and bulk purchasing; long-term sourcing relationships of at least five years; and programs to improve quality and yields on farms. The platform includes contract templates, a BeanTracker data tool, and shared protocols giving all supply chain actors — from co-operatives to processors — real-time visibility into bean volumes, locations, and payments.</p>
+
+        <p>This model has attracted a growing group of "Mission Allies," including Ben &amp; Jerry's, Aldi, and several smaller food companies. In the 2023/24 season, 20 companies sourced more than 17,000 tonnes of cocoa through the platform — a year-over-year increase of nearly 20 percent. Among Tony's longest-standing co-operative partners, the child labor rate stands at approximately 3.9 percent, compared with an industry average of nearly 50 percent.</p>
+
+        <p>Tony's is candid about the limits of its model. The company acknowledges it cannot guarantee every bar is entirely free of child labor, and that its ambition — to scale impact without compromising mission — remains financially unresolved. In 2023, revenues grew 23 percent to €150 million, but Tony's posted a €2.7 million loss, partly attributable to the higher premiums it pays to farmers and continued investment in global expansion. The broader cocoa market faces mounting pressure: rising input costs, crop disease, and climate instability have reduced yields across Ghana and Ivory Coast.</p>
+
+        <p>Tony's approach is not unique in spirit. Footwear company Allbirds open-sourced its proprietary green foam material, and Patagonia has established an open industry standard for regenerative organic certification. Yet sharing supply chain practices remains rare — such information is more typically treated as a competitive advantage. The core tension Tony's raises is whether protecting intellectual property or sharing it more broadly creates greater value for the company, for farmers, and for the industry as a whole.</p>
+      </article>
+
+      <div class="callout callout-info" role="note">
+        <p><strong>Activity question you will research:</strong> How can Tony's Chocolonely scale its Open Chain model to drive industry-wide change in ethical cocoa sourcing, and what are the strategic trade-offs involved in sharing proprietary supply chain practices with competitors?</p>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" type="button" onclick="goToStep(0)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M8 13L3 8l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+        <button class="btn btn-primary" type="button" onclick="goToStep(2)">Continue to Company Selection <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 2: COMPANY -->
+  <section class="step-panel" id="step-2" data-active="false" aria-labelledby="s2-heading">
+    <div class="card">
+      <div class="card-header">
+        <p class="step-counter" aria-hidden="true">Step 2 of 7</p>
+        <h2 id="s2-heading">Choose a Company to Research</h2>
+      </div>
+
+      <p>Select one company from the case study to focus your research on. Each offers a different vantage point on ethical sourcing, supply chain transparency, and the tension between mission and competitive advantage.</p>
+
+      <fieldset aria-describedby="company-error">
+        <legend>Select a company <span aria-label="required">*</span></legend>
+        <div class="radio-group" id="company-group">
+
+          <div class="radio-card">
+            <input type="radio" name="company" id="co-tonys" value="Tony's Chocolonely">
+            <label class="radio-card-label" for="co-tonys">
+              <span class="radio-indicator" aria-hidden="true"><span class="radio-dot"></span></span>
+              <span class="radio-text">
+                <strong>Tony's Chocolonely</strong>
+                <span>The Dutch mission-driven company at the center of the case. Founded to eradicate slavery and child labor from cocoa, it has pioneered an open-source supply chain model and measures success by farmer outcomes rather than profit alone.</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="radio-card">
+            <input type="radio" name="company" id="co-bj" value="Ben &amp; Jerry's">
+            <label class="radio-card-label" for="co-bj">
+              <span class="radio-indicator" aria-hidden="true"><span class="radio-dot"></span></span>
+              <span class="radio-text">
+                <strong>Ben &amp; Jerry's</strong>
+                <span>A long-standing Mission Ally participating in Tony's Open Chain platform. Researching Ben &amp; Jerry's raises questions about how brands operating within large conglomerates — in this case Unilever — adopt and sustain mission-driven supply chain commitments.</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="radio-card">
+            <input type="radio" name="company" id="co-nestle" value="Nestlé">
+            <label class="radio-card-label" for="co-nestle">
+              <span class="radio-indicator" aria-hidden="true"><span class="radio-dot"></span></span>
+              <span class="radio-text">
+                <strong>Nestlé</strong>
+                <span>One of the world's largest food companies and a major cocoa buyer, Nestlé has developed its own cocoa sustainability programs. Researching Nestlé allows you to compare a conventional corporate approach to ethical sourcing with Tony's open-source model.</span>
+              </span>
+            </label>
+          </div>
+
+        </div>
+        <span class="error-msg" id="company-error" role="alert" aria-hidden="true" aria-live="assertive">
+          <svg class="error-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#9B0000" stroke-width="2"/><path d="M8 5v3.5M8 11h.01" stroke="#9B0000" stroke-width="2" stroke-linecap="round"/></svg>
+          Please select a company before continuing.
+        </span>
+      </fieldset>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" type="button" onclick="goToStep(1)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M8 13L3 8l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+        <button class="btn btn-primary" type="button" onclick="validate('company', 3)">Continue to Research Strain <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 3: RESEARCH STRAIN -->
+  <section class="step-panel" id="step-3" data-active="false" aria-labelledby="s3-heading">
+    <div class="card">
+      <div class="card-header">
+        <p class="step-counter" aria-hidden="true">Step 3 of 7</p>
+        <h2 id="s3-heading">Choose a Research Strain</h2>
+      </div>
+
+      <p>Select one area of focus for your research. This "research strain" defines the lens through which you will examine your company — it shapes what you search for, which sources are most relevant, and how you frame your recommendations.</p>
+
+      <fieldset aria-describedby="strain-error">
+        <legend>Select a research strain <span aria-label="required">*</span></legend>
+        <div class="radio-group" id="strain-group">
+
+          <div class="radio-card">
+            <input type="radio" name="strain" id="st-companies" value="Companies — Tony's Chocolonely, Ben &amp; Jerry's, and Nestlé">
+            <label class="radio-card-label" for="st-companies">
+              <span class="radio-indicator" aria-hidden="true"><span class="radio-dot"></span></span>
+              <span class="radio-text">
+                <strong>Companies — Tony's Chocolonely, Ben &amp; Jerry's &amp; Nestlé</strong>
+                <span>Research the companies as institutions: their sourcing strategies, sustainability commitments, financial performance, and corporate culture. Consider comparing them against each other or against industry benchmarks, and whether a U.S. versus global perspective changes the picture.</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="radio-card">
+            <input type="radio" name="strain" id="st-transparency" value="Supply chain transparency and traceability">
+            <label class="radio-card-label" for="st-transparency">
+              <span class="radio-indicator" aria-hidden="true"><span class="radio-dot"></span></span>
+              <span class="radio-text">
+                <strong>Supply chain transparency and traceability</strong>
+                <span>Explore how companies track the origin and movement of cocoa from farm to factory. Research tools like GPS mapping, real-time data platforms, and third-party auditing, and examine how traceability contributes to accountability — and where it falls short.</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="radio-card">
+            <input type="radio" name="strain" id="st-ethics" value="Ethical sourcing and labor standards in the cocoa industry">
+            <label class="radio-card-label" for="st-ethics">
+              <span class="radio-indicator" aria-hidden="true"><span class="radio-dot"></span></span>
+              <span class="radio-text">
+                <strong>Ethical sourcing and labor standards in the cocoa industry</strong>
+                <span>Investigate child labor rates, living income benchmarks, farmer co-operative structures, and certification schemes such as Fairtrade and Rainforest Alliance. Consider who benefits from ethical sourcing models and what structural barriers prevent broader adoption.</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="radio-card">
+            <input type="radio" name="strain" id="st-opencollaboration" value="Pre-competitive collaboration and open-source supply chain models">
+            <label class="radio-card-label" for="st-opencollaboration">
+              <span class="radio-indicator" aria-hidden="true"><span class="radio-dot"></span></span>
+              <span class="radio-text">
+                <strong>Pre-competitive collaboration and open-source business models</strong>
+                <span>Research when and why companies share proprietary supply chain practices with competitors. Examine examples from other industries (Allbirds, Patagonia) and explore the strategic arguments for collective action over competitive differentiation.</span>
+              </span>
+            </label>
+          </div>
+
+        </div>
+        <span class="error-msg" id="strain-error" role="alert" aria-hidden="true" aria-live="assertive">
+          <svg class="error-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#9B0000" stroke-width="2"/><path d="M8 5v3.5M8 11h.01" stroke="#9B0000" stroke-width="2" stroke-linecap="round"/></svg>
+          Please select a research strain before continuing.
+        </span>
+      </fieldset>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" type="button" onclick="goToStep(2)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M8 13L3 8l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+        <button class="btn btn-primary" type="button" onclick="validate('strain', 4)">Continue to Brainstorm <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 4: USEFUL INFO -->
+  <section class="step-panel" id="step-4" data-active="false" aria-labelledby="s4-heading">
+    <div class="card">
+      <div class="card-header">
+        <p class="step-counter" aria-hidden="true">Step 4 of 7</p>
+        <h2 id="s4-heading">Brainstorm: What Information Would Be Useful?</h2>
+      </div>
+
+      <p>Before searching a database, it helps to think clearly about <em>what you actually need to know</em>. This brainstorm will sharpen your research question and make your database searches more purposeful.</p>
+
+      <div class="callout callout-info" role="note" id="useful-context-box" aria-live="polite">
+        <p id="useful-context-text"><em>Your selections will appear here once you reach this step.</em></p>
+      </div>
+
+      <h3>Company-specific data to consider</h3>
+      <p>Think about what you would want to know specifically about the company you selected:</p>
+      <ul>
+        <li>What is the company's current supply chain and sourcing strategy, and how has it evolved?</li>
+        <li>How has the company performed financially — are there signs that its sourcing model helps or hurts profitability?</li>
+        <li>What have company leaders said publicly about their approach to ethical sourcing or supply chain transparency?</li>
+        <li>Has the company faced legal scrutiny, NGO investigations, or reputational challenges related to labor standards?</li>
+        <li>What metrics does the company use to measure success — and how do those compare to industry norms?</li>
+      </ul>
+      <p>Useful source types for company-level research include <strong>news articles</strong>, <strong>company annual and impact reports</strong>, <strong>earnings releases</strong>, and <strong>company press releases</strong>.</p>
+
+      <div class="form-group" style="margin-top: 16px;">
+        <label class="form-label" for="company-info">What company-specific information would be most useful? <span class="req" aria-label="required">*</span></label>
+        <span class="hint" id="company-info-hint">For each type of information, note what kind of source you would look for. Write in notes, bullet points, or full sentences.</span>
+        <textarea id="company-info" name="company-info" aria-required="true" aria-describedby="company-info-hint company-info-error" rows="6" placeholder="Example: For Tony's Chocolonely, I would want its most recent annual impact report to see child labor rates and farmer income data, recent news articles about the Open Chain's growth and challenges, and any public statements from the CEO about the financial sustainability of the mission-driven model..."></textarea>
+        <span class="error-msg" id="company-info-error" role="alert" aria-hidden="true" aria-live="assertive">
+          <svg class="error-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#9B0000" stroke-width="2"/><path d="M8 5v3.5M8 11h.01" stroke="#9B0000" stroke-width="2" stroke-linecap="round"/></svg>
+          Please describe the company-specific information you would look for.
+        </span>
+      </div>
+
+      <hr class="divider">
+
+      <h3>Industry-specific data to consider</h3>
+      <p>Strong recommendations are grounded in context. Think about what you would need to know about the broader cocoa and agricultural supply chain industry:</p>
+      <ul>
+        <li>What are the prevailing child labor and forced labor rates across cocoa-producing regions in West Africa?</li>
+        <li>How common are open-source or collaborative sustainability models in the food and commodity sectors?</li>
+        <li>What certification schemes exist — Fairtrade, Rainforest Alliance, UTZ — and how effective are they at improving farmer outcomes?</li>
+        <li>What economic pressures face cocoa farmers — price volatility, crop disease, climate change, land tenure?</li>
+        <li>How do major competitors compare on ethical sourcing commitments and supply chain transparency?</li>
+      </ul>
+      <p>Useful source types for industry-level research include <strong>industry and market research reports</strong>, <strong>government and international labor data</strong> (such as ILO reports), and <strong>academic research</strong> on supply chain management, agricultural economics, or labor standards.</p>
+
+      <div class="form-group" style="margin-top: 16px;">
+        <label class="form-label" for="industry-info">What industry-specific information would be most useful? <span class="req" aria-label="required">*</span></label>
+        <span class="hint" id="industry-info-hint">Think about sector-wide data, competitor comparisons, and broader agricultural and labor trends. Note what kind of source you would look for.</span>
+        <textarea id="industry-info" name="industry-info" aria-required="true" aria-describedby="industry-info-hint industry-info-error" rows="6" placeholder="Example: I would look for ILO or NGO reports on child labor rates in Ghana and Ivory Coast, market research on the global cocoa and chocolate industry, academic studies on the effectiveness of Fairtrade certification, and data comparing how different companies' sustainability programs affect farmer incomes..."></textarea>
+        <span class="error-msg" id="industry-info-error" role="alert" aria-hidden="true" aria-live="assertive">
+          <svg class="error-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#9B0000" stroke-width="2"/><path d="M8 5v3.5M8 11h.01" stroke="#9B0000" stroke-width="2" stroke-linecap="round"/></svg>
+          Please describe the industry-specific information you would look for.
+        </span>
+      </div>
+
+      <div class="callout callout-tip" role="note">
+        <p><strong>Where to find these sources:</strong> The Northeastern library's <a href="https://subjectguides.lib.neu.edu/supply_chain" target="_blank" rel="noopener noreferrer">Supply Chain Subject Guide</a> has curated resources for both company-level and industry-level research. Your instructor can point you to the right databases for each source type you've identified above.</p>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" type="button" onclick="goToStep(3)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M8 13L3 8l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+        <button class="btn btn-primary" type="button" onclick="validate('useful-info', 5)">Continue to Keywords <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 5: KEYWORDS -->
+  <section class="step-panel" id="step-5" data-active="false" aria-labelledby="s5-heading">
+    <div class="card">
+      <div class="card-header">
+        <p class="step-counter" aria-hidden="true">Step 5 of 7</p>
+        <h2 id="s5-heading">Brainstorm: Database Search Keywords</h2>
+      </div>
+
+      <p>Effective library searches depend on carefully chosen keywords. In this step you will brainstorm relevant terms and combine them into a search string using Boolean logic.</p>
+
+      <div class="callout callout-info" role="note" id="keyword-context-box" aria-live="polite">
+        <p id="keyword-context-text"><em>Your research focus will appear here once you reach this step.</em></p>
+      </div>
+
+      <!-- Database recommendations — populated by JS based on strain selection -->
+      <div id="db-recs-container" aria-live="polite" style="display:none;">
+        <div class="db-recs-section">
+          <p class="db-recs-label">Recommended Databases for Your Research Strain</p>
+          <div id="db-recs-list"></div>
+          <p class="db-recs-footer">Access all databases through the <a href="https://subjectguides.lib.neu.edu/supply_chain" target="_blank" rel="noopener noreferrer">Supply Chain Subject Guide</a>. All require a Northeastern login.</p>
+        </div>
+      </div>
+
+      <h3>How Boolean search strings work</h3>
+      <p>Most academic databases support Boolean operators. Use them to control the scope and precision of your results:</p>
+      <ul>
+        <li><strong>AND</strong> — narrows results; both terms must appear: <em>supply chain transparency AND cocoa</em></li>
+        <li><strong>OR</strong> — broadens results; useful for synonyms: <em>child labor OR forced labor OR child labour</em></li>
+        <li><strong>NOT</strong> — excludes a term: <em>ethical sourcing NOT coffee</em></li>
+        <li><strong>Quotation marks " "</strong> — searches an exact phrase: <em>"living income"</em></li>
+        <li><strong>Truncation *</strong> — finds all word forms: <em>sustain*</em> finds sustainable, sustainability, sustaining</li>
+        <li><strong>Parentheses ( )</strong> — groups synonyms: <em>("child labor" OR "child labour" OR "forced labor")</em></li>
+      </ul>
+
+      <h3>Building an effective search string</h3>
+      <p>A well-constructed search string typically has two or three concept groups connected by AND, with synonyms inside each group connected by OR:</p>
+      <div class="code-block" aria-label="Search string structure diagram">Concept 1 AND Concept 2 AND Concept 3
+         ↓              ↓              ↓
+(term OR synonym)  (term OR synonym)  (term OR synonym)</div>
+
+      <p style="margin-top: 12px;"><strong>Example search string:</strong></p>
+      <div class="code-block" aria-label="Example search string">"supply chain transparency" AND (cocoa OR chocolate) AND ("child labor" OR "child labour" OR "forced labor") AND ("Tony's Chocolonely" OR "fair trade" OR Fairtrade)</div>
+
+      <h3>Tips for refining your search</h3>
+      <ul>
+        <li><strong>Too many results?</strong> Add another AND concept, use more specific terms, or apply date and publication-type filters in the database's filter panel.</li>
+        <li><strong>Too few results?</strong> Remove one AND concept, replace specific terms with broader ones, or add OR synonyms to an existing group.</li>
+        <li><strong>Try subject headings:</strong> Many databases assign controlled vocabulary terms to articles. When you find a relevant article, check its subject headings and add those terms to future searches.</li>
+        <li><strong>Search multiple databases:</strong> A business news database will return different results than an academic research database or an industry report database — both may be useful.</li>
+        <li><strong>Separate your searches:</strong> Run one search focused on your company and a separate search on the broader industry or research strain. Combining everything in one string often narrows results too much.</li>
+      </ul>
+
+      <hr class="divider">
+
+      <div class="form-group">
+        <label class="form-label" for="keywords-list">List keywords and phrases related to your research strain <span class="req" aria-label="required">*</span></label>
+        <span class="hint" id="kw-hint">Include synonyms, related concepts, important proper nouns, and alternative phrasings. Think about how different authors might describe the same idea.</span>
+        <textarea id="keywords-list" name="keywords-list" aria-required="true" aria-describedby="kw-hint keywords-error" rows="6" placeholder="Example keyword list:&#10;- supply chain transparency, traceability, chain of custody, provenance&#10;- cocoa, cacao, chocolate, confectionery&#10;- child labor, child labour, forced labor, modern slavery, human trafficking&#10;- ethical sourcing, responsible sourcing, sustainable procurement&#10;- Fairtrade, fair trade, living income, living wage, Rainforest Alliance&#10;- Tony's Chocolonely, Open Chain, Mission Allies, pre-competitive collaboration"></textarea>
+        <span class="error-msg" id="keywords-error" role="alert" aria-hidden="true" aria-live="assertive">
+          <svg class="error-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#9B0000" stroke-width="2"/><path d="M8 5v3.5M8 11h.01" stroke="#9B0000" stroke-width="2" stroke-linecap="round"/></svg>
+          Please list your keywords before continuing.
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="search-string">Build a database search string using Boolean operators <span class="req" aria-label="required">*</span></label>
+        <span class="hint" id="ss-hint">Combine your keywords into a focused search string. Aim to capture your specific company and research strain together.</span>
+        <textarea id="search-string" name="search-string" aria-required="true" aria-describedby="ss-hint search-string-error" rows="4" placeholder='Example: ("ethical sourcing" OR "responsible sourcing") AND (cocoa OR chocolate) AND ("Tony&apos;s Chocolonely" OR "open chain" OR "pre-competitive") AND (traceability OR transparency)'></textarea>
+        <span class="error-msg" id="search-string-error" role="alert" aria-hidden="true" aria-live="assertive">
+          <svg class="error-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#9B0000" stroke-width="2"/><path d="M8 5v3.5M8 11h.01" stroke="#9B0000" stroke-width="2" stroke-linecap="round"/></svg>
+          Please draft a search string before continuing.
+        </span>
+      </div>
+
+      <div class="callout callout-tip" role="note">
+        <p><strong>Need research support?</strong> Lily Reilly, Northeastern's Entrepreneurship Librarian, offers video consultations and email support. Reach her at <a href="mailto:li.reilly@northeastern.edu">li.reilly@northeastern.edu</a> or through the <a href="https://subjectguides.lib.neu.edu/supply_chain" target="_blank" rel="noopener noreferrer">Supply Chain Subject Guide</a>.</p>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" type="button" onclick="goToStep(4)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M8 13L3 8l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+        <button class="btn btn-primary" type="button" onclick="validate('keywords', 6)">Continue to AI Policy <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 6: AI POLICY -->
+  <section class="step-panel" id="step-6" data-active="false" aria-labelledby="s6-heading">
+    <div class="card">
+      <div class="card-header">
+        <p class="step-counter" aria-hidden="true">Step 6 of 7</p>
+        <h2 id="s6-heading">Understanding AI Use in Your Research</h2>
+      </div>
+
+      <p>Before completing your worksheet, review the course AI policy. Understanding when AI is and isn't appropriate will help you use it as a genuine tool — without replacing the research and analysis that is yours to do.</p>
+
+      <h3>The AI Research Workflow</h3>
+      <p>AI can play a supporting role at certain stages, but the core work of researching, synthesizing, and writing must be your own.</p>
+
+      <div class="workflow-steps" role="list">
+        <div class="workflow-step" role="listitem">
+          <div class="workflow-badge workflow-badge-you">YOU</div>
+          <p class="workflow-step-title">1. Research</p>
+          <p>Search databases, reputable news sources, and company websites. AI cannot do this step reliably.</p>
+        </div>
+        <div class="workflow-step" role="listitem">
+          <div class="workflow-badge workflow-badge-youai">YOU &amp; AI</div>
+          <p class="workflow-step-title">2. Understand &amp; Organize</p>
+          <p>Use AI to clarify concepts or terminology, and to help organize your own notes and research.</p>
+        </div>
+        <div class="workflow-step" role="listitem">
+          <div class="workflow-badge workflow-badge-you">YOU</div>
+          <p class="workflow-step-title">3. Apply Course Concepts</p>
+          <p>Synthesize research, connect findings to course frameworks, and develop your original argument.</p>
+        </div>
+        <div class="workflow-step" role="listitem">
+          <div class="workflow-badge workflow-badge-youai">YOU &amp; AI</div>
+          <p class="workflow-step-title">4. Write &amp; Cite</p>
+          <p>Write in your own words and cite all sources. AI may review writing for grammar and clarity only.</p>
+        </div>
+      </div>
+
+      <h3>Appropriate vs. Inappropriate Use</h3>
+      <div class="ai-policy-grid">
+        <div class="ai-policy-box ai-policy-box-ok" role="region" aria-labelledby="ai-ok-heading">
+          <h4 id="ai-ok-heading"><span aria-hidden="true">✓ </span>Appropriate Use</h4>
+          <ul>
+            <li>Understanding course concepts</li>
+            <li>Learning research terminology</li>
+            <li>Organizing your own thoughts and notes</li>
+            <li>Brainstorming analysis angles</li>
+            <li>Clarifying financial or theoretical concepts</li>
+            <li>Reviewing your own writing for grammar and clarity</li>
+          </ul>
+        </div>
+        <div class="ai-policy-box ai-policy-box-no" role="region" aria-labelledby="ai-no-heading">
+          <h4 id="ai-no-heading"><span aria-hidden="true">✗ </span>Inappropriate Use</h4>
+          <ul>
+            <li>Asking AI for company-specific data — it will fabricate figures or use outdated information</li>
+            <li>Having AI generate your recommendations without your own analysis</li>
+            <li>Using AI to write your case analysis without your own synthesis</li>
+            <li>Asking AI to "do research" instead of searching databases or reputable sources</li>
+            <li>Using AI to summarize articles or sources in place of reading them yourself</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <h3>Scenario Practice</h3>
+      <p>Read each scenario and decide whether it represents appropriate or inappropriate AI use. Select your answer to see immediate feedback. All scenarios must be attempted before continuing.</p>
+
+      <div aria-live="polite" class="quiz-progress"><span id="quiz-progress-text">0 of 7 scenarios answered</span></div>
+
+      <div class="scenario-card" id="sc-1" role="group" aria-labelledby="sc-1-label">
+        <p class="scenario-num" aria-hidden="true">Scenario 1 of 7</p>
+        <p class="scenario-text" id="sc-1-label">After finding Tony's Chocolonely's annual impact report online, you use AI to summarize its key findings to help organize your research notes.</p>
+        <div class="scenario-btns">
+          <button class="scenario-choice-btn" type="button" onclick="answerScenario('sc-1','appropriate')" aria-describedby="sc-1-label"><span aria-hidden="true">✓ </span>Appropriate Use</button>
+          <button class="scenario-choice-btn" type="button" onclick="answerScenario('sc-1','inappropriate')" aria-describedby="sc-1-label"><span aria-hidden="true">✗ </span>Inappropriate Use</button>
+        </div>
+        <div class="scenario-feedback" id="sc-1-feedback" role="status" aria-live="polite"></div>
+      </div>
+
+      <div class="scenario-card" id="sc-2" role="group" aria-labelledby="sc-2-label">
+        <p class="scenario-num" aria-hidden="true">Scenario 2 of 7</p>
+        <p class="scenario-text" id="sc-2-label">You need a current statistic on child labor rates in the West African cocoa industry, so you ask AI to provide the most recent figure to cite in your analysis.</p>
+        <div class="scenario-btns">
+          <button class="scenario-choice-btn" type="button" onclick="answerScenario('sc-2','appropriate')" aria-describedby="sc-2-label"><span aria-hidden="true">✓ </span>Appropriate Use</button>
+          <button class="scenario-choice-btn" type="button" onclick="answerScenario('sc-2','inappropriate')" aria-describedby="sc-2-label"><span aria-hidden="true">✗ </span>Inappropriate Use</button>
+        </div>
+        <div class="scenario-feedback" id="sc-2-feedback" role="status" aria-live="polite"></div>
+      </div>
+
+      <div class="scenario-card" id="sc-3" role="group" aria-labelledby="sc-3-label">
+        <p class="scenario-num" aria-hidden="true">Scenario 3 of 7</p>
+        <p class="scenario-text" id="sc-3-label">You are unsure what "Fairtrade premium" means and how it differs from a living income, so you ask AI to explain both terms before you start searching databases.</p>
+        <div class="scenario-btns">
+          <button class="scenario-choice-btn" type="button" onclick="answerScenario('sc-3','appropriate')" aria-describedby="sc-3-label"><span aria-hidden="true">✓ </span>Appropriate Use</button>
+          <button class="scenario-choice-btn" type="button" onclick="answerScenario('sc-3','inappropriate')" aria-describedby="sc-3-label"><span aria-hidden="true">✗ </span>Inappropriate Use</button>
+        </div>
+        <div class="scenario-feedback" id="sc-3-feedback" role="status" aria-live="polite"></div>
+      </div>
+
+      <div class="scenario-card" id="sc-4" role="group" aria-labelledby="sc-4-label">
+        <p class="scenario-num" aria-hidden="true">Scenario 4 of 7</p>
+        <p class="scenario-text" id="sc-4-label">You ask AI to write a draft of your case study recommendations on whether Tony's should continue its Open Chain strategy, then lightly edit the output before submitting it.</p>
+        <div class="scenario-btns">
+          <button class="scenario-choice-btn" type="button" onclick="answerScenario('sc-4','appropriate')" aria-describedby="sc-4-label"><span aria-hidden="true">✓ </span>Appropriate Use</button>
+          <button class="scenario-choice-btn" type="button" onclick="answerScenario('sc-4','inappropriate')" aria-describedby="sc-4-label"><span aria-hidden="true">✗ </span>Inappropriate Use</button>
+        </div>
+        <div class="scenario-feedback" id="sc-4-feedback" role="status" aria-live="polite"></div>
+      </div>
+
+      <div class="scenario-card" id="sc-5" role="group" aria-labelledby="sc-5-label">
+        <p class="scenario-num" aria-hidden="true">Scenario 5 of 7</p>
+        <p class="scenario-text" id="sc-5-label">Instead of searching a library database, you ask AI to find and list recent articles about ethical sourcing in the cocoa supply chain to use as sources in your analysis.</p>
+        <div class="scenario-btns">
+          <button class="scenario-choice-btn" type="button" onclick="answerScenario('sc-5','appropriate')" aria-describedby="sc-5-label"><span aria-hidden="true">✓ </span>Appropriate Use</button>
+          <button class="scenario-choice-btn" type="button" onclick="answerScenario('sc-5','inappropriate')" aria-describedby="sc-5-label"><span aria-hidden="true">✗ </span>Inappropriate Use</button>
+        </div>
+        <div class="scenario-feedback" id="sc-5-feedback" role="status" aria-live="polite"></div>
+      </div>
+
+      <div class="scenario-card" id="sc-6" role="group" aria-labelledby="sc-6-label">
+        <p class="scenario-num" aria-hidden="true">Scenario 6 of 7</p>
+        <p class="scenario-text" id="sc-6-label">After writing your own analysis paragraph about Tony's financial sustainability challenges, you paste it into AI and ask it to check your grammar and suggest clearer phrasing.</p>
+        <div class="scenario-btns">
+          <button class="scenario-choice-btn" type="button" onclick="answerScenario('sc-6','appropriate')" aria-describedby="sc-6-label"><span aria-hidden="true">✓ </span>Appropriate Use</button>
+          <button class="scenario-choice-btn" type="button" onclick="answerScenario('sc-6','inappropriate')" aria-describedby="sc-6-label"><span aria-hidden="true">✗ </span>Inappropriate Use</button>
+        </div>
+        <div class="scenario-feedback" id="sc-6-feedback" role="status" aria-live="polite"></div>
+      </div>
+
+      <div class="scenario-card" id="sc-7" role="group" aria-labelledby="sc-7-label">
+        <p class="scenario-num" aria-hidden="true">Scenario 7 of 7</p>
+        <p class="scenario-text" id="sc-7-label">The case study mentions "pre-competitive collaboration" as a supply chain strategy. You are unsure what this means in a business context, so you ask AI to explain the concept before applying it in your analysis.</p>
+        <div class="scenario-btns">
+          <button class="scenario-choice-btn" type="button" onclick="answerScenario('sc-7','appropriate')" aria-describedby="sc-7-label"><span aria-hidden="true">✓ </span>Appropriate Use</button>
+          <button class="scenario-choice-btn" type="button" onclick="answerScenario('sc-7','inappropriate')" aria-describedby="sc-7-label"><span aria-hidden="true">✗ </span>Inappropriate Use</button>
+        </div>
+        <div class="scenario-feedback" id="sc-7-feedback" role="status" aria-live="polite"></div>
+      </div>
+
+      <div class="callout callout-warn" id="scenarios-incomplete-warning" role="alert" aria-hidden="true" style="margin-top: 4px;">
+        <p>Please answer all 7 scenarios before continuing.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="form-group">
+        <label class="form-label" for="ai-reflection">Reflect on your AI use plan <span class="req" aria-label="required">*</span></label>
+        <span class="hint" id="ai-reflection-hint">In your own words, describe how you plan to use AI appropriately in your research and writing for this case study. What specific tasks will you use it for, and what will you do entirely on your own?</span>
+        <textarea id="ai-reflection" name="ai-reflection" aria-required="true" aria-describedby="ai-reflection-hint ai-reflection-error" rows="6" placeholder="Example: I plan to use AI to clarify what 'pre-competitive collaboration' means in supply chain management theory before I start reading sources, and to check my grammar after I write my analysis. I will use library databases to find all actual sources, read them myself, and write my own recommendations based on what I find..."></textarea>
+        <span class="error-msg" id="ai-reflection-error" role="alert" aria-hidden="true" aria-live="assertive">
+          <svg class="error-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#9B0000" stroke-width="2"/><path d="M8 5v3.5M8 11h.01" stroke="#9B0000" stroke-width="2" stroke-linecap="round"/></svg>
+          Please complete your reflection before continuing.
+        </span>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" type="button" onclick="goToStep(5)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M8 13L3 8l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+        <button class="btn btn-primary" type="button" onclick="validate('ai-policy', 7)">Review My Responses <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 7: REVIEW & DOWNLOAD -->
+  <section class="step-panel" id="step-7" data-active="false" aria-labelledby="s7-heading">
+    <div class="card">
+      <div class="card-header">
+        <p class="step-counter" aria-hidden="true">Step 7 of 7</p>
+        <h2 id="s7-heading">Review Your Responses &amp; Download Worksheet</h2>
+      </div>
+
+      <div class="completion-check" role="img" aria-label="Tutorial complete">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M6 14l6 6 10-10" stroke="#145A32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <p style="text-align: center; font-size: 1.05rem; margin-bottom: 28px;">Your responses are shown below. Review them, then download your completed worksheet as a PDF.</p>
+
+      <div id="summary-container">
+        <div class="summary-item"><p class="summary-label">Student Name</p><div class="summary-value" id="sum-name"></div></div>
+        <div class="summary-item"><p class="summary-label">Activity Question</p><div class="summary-value">How can Tony's Chocolonely scale its Open Chain model to drive industry-wide change in ethical cocoa sourcing, and what are the strategic trade-offs involved in sharing proprietary supply chain practices with competitors?</div></div>
+        <div class="summary-item"><p class="summary-label">Company Selected</p><div class="summary-value" id="sum-company"></div></div>
+        <div class="summary-item"><p class="summary-label">Research Strain Selected</p><div class="summary-value" id="sum-strain"></div></div>
+        <div class="summary-item"><p class="summary-label">Company-Specific Information Brainstorm</p><div class="summary-value" id="sum-company-info"></div></div>
+        <div class="summary-item"><p class="summary-label">Industry-Specific Information Brainstorm</p><div class="summary-value" id="sum-industry-info"></div></div>
+        <div class="summary-item"><p class="summary-label">Keywords List</p><div class="summary-value" id="sum-keywords"></div></div>
+        <div class="summary-item"><p class="summary-label">Database Search String</p><div class="summary-value" id="sum-search"></div></div>
+        <div class="summary-item"><p class="summary-label">AI Use Reflection</p><div class="summary-value" id="sum-ai-reflection"></div></div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="callout callout-info" role="note">
+        <p><strong>AI Research Workflow Reminder:</strong> Now that you have a research plan, use library databases and credible sources — not AI — to conduct your actual research. The Northeastern library's <a href="https://subjectguides.lib.neu.edu/supply_chain" target="_blank" rel="noopener noreferrer">Supply Chain Subject Guide</a> has curated resources for both company-level and industry-level research. AI can help you clarify concepts and review your writing, but the research, synthesis, and analysis must be your own work.</p>
+      </div>
+
+      <div class="btn-group" style="justify-content: space-between;">
+        <button class="btn btn-secondary" type="button" onclick="goToStep(6)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M8 13L3 8l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Back to Edit</button>
+        <button class="btn btn-success" type="button" onclick="downloadPDF()" id="download-btn">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8M4 7l4 4 4-4M2 13h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Download Worksheet as PDF
+        </button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  'use strict';
+  let currentStep = 0;
+  let quizAnswered = 0;
+
+  const SCENARIOS = {
+    'sc-1': {
+      correct: 'inappropriate',
+      correctMsg:   'Correct. Even though you found the report yourself, having AI summarize it means you are not engaging directly with the source. Reading and interpreting your own sources is a core part of the research and analysis process — that work must be your own.',
+      incorrectMsg: 'Not quite. This is inappropriate use. Even though you found the report yourself, having AI summarize it means you are not engaging directly with the source. Reading and interpreting your own sources is a core part of the research process.'
+    },
+    'sc-2': {
+      correct: 'inappropriate',
+      correctMsg:   'Correct. AI does not have access to reliable, current data and will often fabricate statistics or cite outdated figures. Always retrieve industry data like child labor rates from library databases, ILO reports, or credible NGO and government sources.',
+      incorrectMsg: 'Not quite. This is inappropriate use. AI does not have access to reliable, current data and will often fabricate statistics or use outdated figures. Always retrieve industry data from library databases, ILO reports, or credible NGO sources.'
+    },
+    'sc-3': {
+      correct: 'appropriate',
+      correctMsg:   'Correct. Asking AI to explain supply chain or trade terminology before you start researching is a good example of using AI to learn concepts — one of the approved uses in the course policy.',
+      incorrectMsg: 'Not quite. This is appropriate use. Asking AI to explain supply chain or trade terminology before you start searching is a good example of using AI to clarify concepts — one of the approved uses in the course policy.'
+    },
+    'sc-4': {
+      correct: 'inappropriate',
+      correctMsg:   'Correct. Having AI draft your recommendations — even with light editing — means the analysis is not your own. Your case study requires original synthesis and reasoning, which AI cannot provide on your behalf.',
+      incorrectMsg: 'Not quite. This is inappropriate use. Having AI draft your recommendations — even with light editing — means the analysis is not your own. Your case study requires original synthesis and reasoning, which AI cannot provide on your behalf.'
+    },
+    'sc-5': {
+      correct: 'inappropriate',
+      correctMsg:   'Correct. Asking AI to find sources replaces the library research process. AI-generated source lists frequently include fabricated citations, incorrect publication details, or articles the AI cannot actually access. Use library databases to find real, verifiable sources.',
+      incorrectMsg: 'Not quite. This is inappropriate use. Asking AI to find sources replaces the library research process. AI-generated source lists frequently include fabricated or unverifiable citations. Use library databases to find real, vetted sources.'
+    },
+    'sc-6': {
+      correct: 'appropriate',
+      correctMsg:   'Correct. Asking AI to review grammar and phrasing in writing you drafted yourself is explicitly permitted. The analysis and argument remain entirely your own.',
+      incorrectMsg: 'Not quite. This is appropriate use. Asking AI to review grammar and phrasing in writing you drafted yourself is explicitly permitted — the analysis and argument remain entirely your own.'
+    },
+    'sc-7': {
+      correct: 'appropriate',
+      correctMsg:   'Correct. Using AI to clarify a supply chain concept from the case study before applying it yourself is appropriate. Understanding a term is different from having AI perform the analysis for you.',
+      incorrectMsg: 'Not quite. This is appropriate use. Using AI to clarify a supply chain concept before applying it yourself is appropriate. Understanding terminology is different from having AI perform the analysis on your behalf.'
+    }
+  };
+
+  function announce(msg) {
+    const region = document.getElementById('live-region');
+    region.textContent = '';
+    requestAnimationFrame(() => { requestAnimationFrame(() => { region.textContent = msg; }); });
+  }
+
+  function goToStep(targetStep) {
+    document.getElementById('step-' + currentStep).dataset.active = 'false';
+    document.getElementById('step-' + targetStep).dataset.active = 'true';
+    const buttons = document.querySelectorAll('.step-btn');
+    const connectors = document.querySelectorAll('.step-connector');
+    buttons.forEach((btn, i) => {
+      btn.removeAttribute('aria-current');
+      if (i < targetStep) {
+        btn.dataset.state = 'done'; btn.disabled = false; btn.setAttribute('aria-disabled','false');
+        btn.setAttribute('aria-label', 'Step '+(i+1)+': '+btn.querySelector('.step-label-text').textContent.trim()+' — completed');
+      } else if (i === targetStep) {
+        btn.dataset.state = 'current'; btn.setAttribute('aria-current','step'); btn.disabled = false; btn.setAttribute('aria-disabled','false');
+        btn.setAttribute('aria-label', 'Step '+(i+1)+': '+btn.querySelector('.step-label-text').textContent.trim()+' — current step');
+      } else {
+        btn.dataset.state = 'todo'; btn.disabled = true; btn.setAttribute('aria-disabled','true');
+        btn.setAttribute('aria-label', 'Step '+(i+1)+': '+btn.querySelector('.step-label-text').textContent.trim()+' — not yet reached');
+      }
+    });
+    connectors.forEach((conn, i) => { conn.classList.toggle('done', i < targetStep); });
+    currentStep = targetStep;
+    const heading = document.querySelector('#step-'+targetStep+' h2');
+    if (heading) { heading.setAttribute('tabindex','-1'); heading.focus({ preventScroll: true }); }
+    document.getElementById('main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function startTutorial() {
+    const input = document.getElementById('student-name');
+    const errorEl = document.getElementById('name-error');
+    if (!input.value.trim()) {
+      input.setAttribute('aria-invalid','true'); errorEl.setAttribute('aria-hidden','false'); input.focus();
+      announce('Error: Please enter your full name to begin.'); return;
+    }
+    input.setAttribute('aria-invalid','false'); errorEl.setAttribute('aria-hidden','true');
+    goToStep(1);
+    announce('Welcome, '+input.value.trim()+'. Proceeding to the case study — step 1 of 7.');
+  }
+
+  function validate(type, nextStep) {
+    if (type === 'company') {
+      const selected = document.querySelector('input[name="company"]:checked');
+      const err = document.getElementById('company-error');
+      if (!selected) { err.setAttribute('aria-hidden','false'); document.getElementById('co-tonys').focus(); announce('Error: Please select a company before continuing.'); return; }
+      err.setAttribute('aria-hidden','true');
+      goToStep(nextStep);
+      announce('Company selected: '+selected.value+'. Moving to step 3 of 7, Research Strain.'); return;
+    }
+    if (type === 'strain') {
+      const selected = document.querySelector('input[name="strain"]:checked');
+      const err = document.getElementById('strain-error');
+      if (!selected) { err.setAttribute('aria-hidden','false'); document.getElementById('st-companies').focus(); announce('Error: Please select a research strain before continuing.'); return; }
+      err.setAttribute('aria-hidden','true');
+      updateUsefulInfoContext();
+      goToStep(nextStep);
+      announce('Research strain selected. Moving to step 4 of 7, useful information brainstorm.'); return;
+    }
+    if (type === 'useful-info') {
+      const companyField = document.getElementById('company-info');
+      const industryField = document.getElementById('industry-info');
+      const companyErr = document.getElementById('company-info-error');
+      const industryErr = document.getElementById('industry-info-error');
+      let valid = true;
+      if (!companyField.value.trim()) { companyField.setAttribute('aria-invalid','true'); companyErr.setAttribute('aria-hidden','false'); if (valid) companyField.focus(); valid = false; }
+      else { companyField.setAttribute('aria-invalid','false'); companyErr.setAttribute('aria-hidden','true'); }
+      if (!industryField.value.trim()) { industryField.setAttribute('aria-invalid','true'); industryErr.setAttribute('aria-hidden','false'); if (valid) industryField.focus(); valid = false; }
+      else { industryField.setAttribute('aria-invalid','false'); industryErr.setAttribute('aria-hidden','true'); }
+      if (!valid) { announce('Error: Please complete both brainstorm fields before continuing.'); return; }
+      updateKeywordContext();
+      goToStep(nextStep);
+      announce('Brainstorm saved. Moving to step 5 of 7, database search keywords.'); return;
+    }
+    if (type === 'keywords') {
+      const kwField = document.getElementById('keywords-list');
+      const ssField = document.getElementById('search-string');
+      const kwErr = document.getElementById('keywords-error');
+      const ssErr = document.getElementById('search-string-error');
+      let valid = true;
+      if (!kwField.value.trim()) { kwField.setAttribute('aria-invalid','true'); kwErr.setAttribute('aria-hidden','false'); if (valid) kwField.focus(); valid = false; }
+      else { kwField.setAttribute('aria-invalid','false'); kwErr.setAttribute('aria-hidden','true'); }
+      if (!ssField.value.trim()) { ssField.setAttribute('aria-invalid','true'); ssErr.setAttribute('aria-hidden','false'); if (valid) ssField.focus(); valid = false; }
+      else { ssField.setAttribute('aria-invalid','false'); ssErr.setAttribute('aria-hidden','true'); }
+      if (!valid) { announce('Error: Please complete both the keywords list and search string before continuing.'); return; }
+      goToStep(nextStep);
+      announce('Keywords saved. Moving to step 6 of 7, AI policy.'); return;
+    }
+    if (type === 'ai-policy') {
+      if (quizAnswered < 7) {
+        const warn = document.getElementById('scenarios-incomplete-warning');
+        warn.setAttribute('aria-hidden','false');
+        warn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        announce('Error: Please answer all 7 scenarios before continuing.'); return;
+      }
+      const reflection = document.getElementById('ai-reflection');
+      const reflectErr = document.getElementById('ai-reflection-error');
+      if (!reflection.value.trim()) {
+        reflection.setAttribute('aria-invalid','true'); reflectErr.setAttribute('aria-hidden','false'); reflection.focus();
+        announce('Error: Please complete your AI reflection before continuing.'); return;
+      }
+      reflection.setAttribute('aria-invalid','false'); reflectErr.setAttribute('aria-hidden','true');
+      populateSummary();
+      goToStep(nextStep);
+      announce('AI policy section complete. Moving to step 7 of 7, review and download.'); return;
+    }
+  }
+
+  function answerScenario(cardId, chosen) {
+    const scenario = SCENARIOS[cardId];
+    const card = document.getElementById(cardId);
+    const feedback = document.getElementById(cardId+'-feedback');
+    const buttons = card.querySelectorAll('.scenario-choice-btn');
+    if (card.dataset.result) return;
+    const isCorrect = chosen === scenario.correct;
+    card.dataset.result = isCorrect ? 'correct' : 'incorrect';
+    buttons.forEach(btn => { btn.disabled = true; btn.setAttribute('aria-disabled','true'); });
+    feedback.textContent = isCorrect ? scenario.correctMsg : scenario.incorrectMsg;
+    quizAnswered++;
+    document.getElementById('quiz-progress-text').textContent = quizAnswered+' of 7 scenarios answered';
+    if (quizAnswered > 0) document.getElementById('scenarios-incomplete-warning').setAttribute('aria-hidden','true');
+    announce((isCorrect ? 'Correct. ' : 'Incorrect. ')+(isCorrect ? scenario.correctMsg : scenario.incorrectMsg));
+  }
+
+  /* -----------------------------------------------
+     DATABASE RECOMMENDATIONS (keyed by strain radio ID)
+     Source: Northeastern Supply Chain Subject Guide
+     https://subjectguides.lib.neu.edu/supply_chain
+  ----------------------------------------------- */
+  const DATABASE_RECS = {
+    'st-companies': [
+      { name:'MarketLine Advantage', url:'https://link.ezproxy.neu.edu/login?url=https://new.marketline.com/Account/IPAccessLogin', tag:'Search Companies', tagClass:'db-tag-companies', desc:'Company profiles, SWOT analyses, financial overviews, and case studies for major companies worldwide.', howTo:['Search the company name (e.g., Tony\'s Chocolonely, Nestl\u00e9) in the main search bar.','Select the company profile to find its SWOT analysis, financial overview, and recent news.','For case studies: hover over the Analysis tab \u2192 click Case Studies \u2192 filter by Food &amp; Beverage or by keyword.'] },
+      { name:'PitchBook', url:'https://subjectguides.lib.neu.edu/supply_chain/pitchbook', tag:'Search Companies', tagClass:'db-tag-companies', desc:'Data and research on private capital, private equity, venture-backed companies, and M&amp;A transactions. Useful for researching privately held companies like Tony\'s Chocolonely. Downloads limited to 100 per month per user.', howTo:['Access PitchBook via the Get PitchBook tab in the Supply Chain Subject Guide (registration required).','Search the company name in the Companies tab to find funding history, ownership, investors, and financials.','Use the Downloads feature to export a company profile \u2014 note the 100-download monthly limit.'] },
+      { name:'Factiva', url:'https://subjectguides.lib.neu.edu/factiva', tag:'Read Articles', tagClass:'db-tag-articles', note:'Access limited to 5 simultaneous users.', desc:'News from hundreds of international newspapers and trade publications including the Wall Street Journal and Financial Times.', howTo:['Use the Companies/Markets tab to search by company name, or enter keywords in the free-text search box.','Filter by Source (e.g., Financial Times, Wall Street Journal) and set a date range.','Use the All News or Business topic filter to focus on business coverage.'] },
+      { name:'Financial Times', url:'https://ft.com/northeastern', tag:'Read Articles', tagClass:'db-tag-articles', desc:'London-based international business newspaper with strong coverage of European companies and global supply chains. Registration with a Northeastern email required.', howTo:['Register at ft.com/northeastern using your Northeastern email address.','Use the search bar at the top of the FT homepage to search by company name or topic.','Filter results by date or by content section (Companies, Markets, Sustainability).'] }
+    ],
+    'st-transparency': [
+      { name:'Business Source Ultimate (EBSCOhost)', url:'https://research.ebsco.com/c/xrcudx/?db=bsu', tag:'Read Articles', tagClass:'db-tag-articles', desc:'Peer-reviewed academic articles and professional publications across business and management fields, including supply chain management.', howTo:['Open Advanced Search and enter keywords in multiple rows connected by AND.','Example: SU (Subject) = supply chain management AND All Text = traceability AND All Text = cocoa.','Apply the Peer Reviewed and Full Text filters. Click subject headings on relevant articles to discover related vocabulary for follow-up searches.'] },
+      { name:'ABI/Inform (ProQuest)', url:'https://link.ezproxy.neu.edu/login?url=https://search.proquest.com/abicomplete/accountid=12826', tag:'Read Articles', tagClass:'db-tag-articles', desc:'Professional and scholarly business and economics articles, trade publications, and company reports.', howTo:['Use Advanced Search and enter your concepts in separate rows connected by AND.','Example: "supply chain transparency" AND "food industry" AND traceability.','Filter by Source Type: Trade Publications for practitioner articles, or Scholarly Journals for peer-reviewed research.'] },
+      { name:'Factiva', url:'https://subjectguides.lib.neu.edu/factiva', tag:'Read Articles', tagClass:'db-tag-articles', note:'Access limited to 5 simultaneous users.', desc:'International news for tracking corporate announcements, regulatory developments, and investigative reporting on supply chain practices.', howTo:['Search: "supply chain transparency" AND (cocoa OR chocolate) in the free-text box.','Add a company name in parentheses \u2014 e.g., (Nestl\u00e9 OR "Tony\'s Chocolonely") \u2014 to narrow to specific companies.','Set a date range to track how reporting on transparency has developed over time.'] },
+      { name:'Financial Times', url:'https://ft.com/northeastern', tag:'Read Articles', tagClass:'db-tag-articles', desc:'International business newspaper with strong coverage of supply chain issues, commodity markets, and corporate sustainability. Registration required.', howTo:['Register at ft.com/northeastern using your Northeastern email address.','Search "supply chain transparency," "cocoa traceability," or a specific company name.','Browse the FT\'s Sustainability and Supply Chain topic pages for curated coverage.'] }
+    ],
+    'st-ethics': [
+      { name:'Business Source Ultimate (EBSCOhost)', url:'https://research.ebsco.com/c/xrcudx/?db=bsu', tag:'Read Articles', tagClass:'db-tag-articles', desc:'Peer-reviewed articles covering labor standards, supply chain ethics, fair trade certification, and sustainability.', howTo:['Use Advanced Search: SU (Subject) = fair trade AND All Text = cocoa AND All Text = "child labor".','Also try subject headings: labor standards, sustainable agriculture, or supply chain ethics.','Apply the Peer Reviewed filter. Check subject headings on useful articles to find additional controlled vocabulary.'] },
+      { name:'EconLit (EBSCOhost)', url:'https://research.ebsco.com/c/xrcudx/?db=eoh', tag:'Read Articles', tagClass:'db-tag-articles', desc:'The American Economic Association\'s database of economics literature \u2014 the leading source for research on agricultural labor, commodity trade, and development economics.', howTo:['Search: "child labor" AND cocoa, or "fair trade" AND ("living income" OR "living wage").','Look for JEL classification codes: J80 (Labor Standards), Q17 (Agriculture in International Trade), O13 (Agricultural Economics).','Economics articles frequently cite ILO and World Bank primary data \u2014 use their reference lists to locate original datasets.'] },
+      { name:'Emerging Markets Information Service (EMIS)', url:'https://link.ezproxy.neu.edu/login?url=https://site.securities.com/emis.html', tag:'Research Industries', tagClass:'db-tag-industries', desc:'News, market research, and financial data from over 80 emerging markets including West Africa. Includes reports from Oxford Economics, Euromonitor, OECD, and IMF.', howTo:['Search by country: enter Ghana or Ivory Coast (also C\u00f4te d\'Ivoire) to find country profiles and economic reports.','Or search by industry sector (Agriculture or Food &amp; Beverage) for cocoa-specific industry analysis.','Filter by Report Type to focus on Market Reports or Country Analysis for structured regional data.'] },
+      { name:'Factiva', url:'https://subjectguides.lib.neu.edu/factiva', tag:'Read Articles', tagClass:'db-tag-articles', note:'Access limited to 5 simultaneous users.', desc:'International news for tracking NGO investigations, regulatory reporting, and journalistic coverage of labor standards in the cocoa industry.', howTo:['Search: "child labor" AND (cocoa OR chocolate) AND (Ghana OR "Ivory Coast" OR "Cote d\'Ivoire").','Apply date filters to track how reporting on labor standards has evolved over time.','Look for NGO reports, investigative journalism, and regulatory coverage alongside corporate announcements.'] }
+    ],
+    'st-opencollaboration': [
+      { name:'Business Source Ultimate (EBSCOhost)', url:'https://research.ebsco.com/c/xrcudx/?db=bsu', tag:'Read Articles', tagClass:'db-tag-articles', desc:'Peer-reviewed articles on management strategy, competitive advantage, open innovation, and sustainability frameworks.', howTo:['Search: "pre-competitive collaboration" OR coopetition AND ("supply chain" OR sustainability).','Also try: "open source" AND ("competitive advantage" OR differentiation) AND sustainability.','Apply the Peer Reviewed filter. Check subject headings for related terms such as "open innovation" or "collective action."'] },
+      { name:'ABI/Inform (ProQuest)', url:'https://link.ezproxy.neu.edu/login?url=https://search.proquest.com/abicomplete/accountid=12826', tag:'Read Articles', tagClass:'db-tag-articles', desc:'Scholarly and practitioner-focused business literature including strategy research and trade publications.', howTo:['Search: "open source" AND ("supply chain" OR sustainability) AND ("competitive advantage" OR differentiation).','Filter by Source Type: Scholarly Journals for academic perspectives, Trade Publications for industry viewpoints.','Add sector terms ("food industry" OR confectionery) to narrow results to sectors relevant to this case.'] },
+      { name:'Financial Times', url:'https://ft.com/northeastern', tag:'Read Articles', tagClass:'db-tag-articles', desc:'International business newspaper covering corporate strategy, open-source business models, and pre-competitive collaboration. Registration required.', howTo:['Register at ft.com/northeastern using your Northeastern email address.','Search "pre-competitive collaboration," "open sourcing," "Tony\'s Chocolonely," or "Open Chain."','Browse the FT\'s Business Education and Sustainability sections for strategy-focused reporting.'] }
+    ]
+  };
+
+  function populateDatabaseRecs() {
+    const checkedStrain = document.querySelector('input[name="strain"]:checked');
+    const container = document.getElementById('db-recs-container');
+    const list = document.getElementById('db-recs-list');
+    if (!container || !list) return;
+    if (!checkedStrain || !DATABASE_RECS[checkedStrain.id]) { container.style.display = 'none'; return; }
+    const recs = DATABASE_RECS[checkedStrain.id];
+    container.style.display = 'block';
+    list.innerHTML = recs.map(db => `
+      <div class="db-card">
+        <div class="db-card-top">
+          <a href="${db.url}" class="db-name-link" target="_blank" rel="noopener noreferrer">${db.name}</a>
+          <span class="db-tag ${db.tagClass}">${db.tag}</span>
+        </div>
+        <p class="db-desc">${db.desc}</p>
+        ${db.note ? `<p class="db-note">Note: ${db.note}</p>` : ''}
+        <div class="db-how-to">
+          <p class="db-how-to-label">How to search</p>
+          <ol>${db.howTo.map(s => `<li>${s}</li>`).join('')}</ol>
+        </div>
+      </div>`).join('');
+  }
+
+  function updateUsefulInfoContext() {
+    const company = document.querySelector('input[name="company"]:checked')?.value || '';
+    const strain = document.querySelector('input[name="strain"]:checked')?.value || '';
+    const el = document.getElementById('useful-context-text');
+    if (company && strain) el.innerHTML = '<strong>Your focus:</strong> Researching <strong>'+escapeHtml(company)+'</strong> through the lens of <strong>'+escapeHtml(strain)+'</strong>.';
+  }
+
+  function updateKeywordContext() {
+    const company = document.querySelector('input[name="company"]:checked')?.value || '';
+    const strain = document.querySelector('input[name="strain"]:checked')?.value || '';
+    const el = document.getElementById('keyword-context-text');
+    if (company && strain) el.innerHTML = '<strong>Your research focus:</strong> <strong>'+escapeHtml(strain)+'</strong> \u2014 applied to <strong>'+escapeHtml(company)+'</strong>. The recommended databases below are a good starting point for this research focus.';
+    populateDatabaseRecs();
+  }
+
+  function populateSummary() {
+    const name = document.getElementById('student-name').value.trim();
+    const company = document.querySelector('input[name="company"]:checked')?.value || '';
+    const strain = document.querySelector('input[name="strain"]:checked')?.value || '';
+    const companyInfo = document.getElementById('company-info').value.trim();
+    const industryInfo = document.getElementById('industry-info').value.trim();
+    const kw = document.getElementById('keywords-list').value.trim();
+    const ss = document.getElementById('search-string').value.trim();
+    const aiReflection = document.getElementById('ai-reflection').value.trim();
+    document.getElementById('sum-name').textContent = name;
+    document.getElementById('sum-company').textContent = company;
+    document.getElementById('sum-strain').textContent = strain;
+    document.getElementById('sum-company-info').textContent = companyInfo;
+    document.getElementById('sum-industry-info').textContent = industryInfo;
+    document.getElementById('sum-keywords').textContent = kw;
+    document.getElementById('sum-search').textContent = ss;
+    document.getElementById('sum-ai-reflection').textContent = aiReflection;
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
+  function downloadPDF() {
+    const btn = document.getElementById('download-btn');
+    btn.disabled = true; btn.textContent = 'Generating PDF…';
+    announce('Generating your PDF worksheet, please wait.');
+    try {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'letter' });
+      const PW = doc.internal.pageSize.getWidth();
+      const PH = doc.internal.pageSize.getHeight();
+      const ML = 20, MR = 20, CW = PW - ML - MR, FOOTER = 12;
+      let y = 0;
+      const RED=[200,16,46], BLACK=[26,26,26], GRAY=[92,92,92], LTGRY=[247,247,247], BRDGRY=[199,199,199], WHITE=[255,255,255], BLUE=[12,59,114], INFOBL=[235,243,255];
+
+      function drawPageHeader() {
+        doc.setFillColor(...RED); doc.rect(0,0,PW,22,'F');
+        doc.setTextColor(...WHITE); doc.setFont('helvetica','bold'); doc.setFontSize(11);
+        doc.text('Secondary Research for Case Studies',ML,10);
+        doc.setFont('helvetica','normal'); doc.setFontSize(8);
+        doc.text('SCHM 2301 & 3301  ·  Northeastern University',ML,17);
+        const today = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+        doc.text(today,PW-MR,17,{align:'right'});
+      }
+      function drawPageFooter(pageNum, totalPages) {
+        doc.setFont('helvetica','normal'); doc.setFontSize(7.5); doc.setTextColor(...GRAY);
+        doc.text('Northeastern University — SCHM 2301 & 3301',ML,PH-6);
+        doc.text('Page '+pageNum+' of '+totalPages,PW-MR,PH-6,{align:'right'});
+        doc.setDrawColor(...BRDGRY); doc.setLineWidth(0.3); doc.line(ML,PH-9,PW-MR,PH-9);
+      }
+      function newPage() { doc.addPage(); drawPageHeader(); y = 30; }
+      function checkSpace(needed) { if (y+needed > PH-FOOTER-10) newPage(); }
+      function addField(label, value) {
+        const safeVal = value || '(No response provided)';
+        const lines = doc.splitTextToSize(safeVal, CW-10);
+        const boxH = lines.length*5.2+10;
+        checkSpace(20+boxH);
+        doc.setFont('helvetica','bold'); doc.setFontSize(7.5); doc.setTextColor(...RED);
+        doc.text(label.toUpperCase(),ML,y); y+=5;
+        doc.setFillColor(...LTGRY); doc.setDrawColor(...BRDGRY); doc.setLineWidth(0.3);
+        doc.roundedRect(ML,y,CW,boxH,2,2,'FD');
+        doc.setFont('helvetica','normal'); doc.setFontSize(9.5); doc.setTextColor(...BLACK);
+        let textY = y+7;
+        for (const line of lines) {
+          if (textY > PH-FOOTER-12) { newPage(); textY=y; }
+          doc.text(line,ML+5,textY); textY+=5.2;
+        }
+        y = textY+6;
+      }
+
+      drawPageHeader(); y = 30;
+      doc.setFont('helvetica','bold'); doc.setFontSize(18); doc.setTextColor(...BLACK);
+      doc.text('Research Worksheet',ML,y); y+=7;
+      doc.setFont('helvetica','normal'); doc.setFontSize(9.5); doc.setTextColor(...GRAY);
+      const subLines = doc.splitTextToSize('Use this worksheet as a reference for your case analysis. Conduct your research using library databases and credible sources.',CW);
+      subLines.forEach(line => { doc.text(line,ML,y); y+=5; }); y+=4;
+      doc.setDrawColor(...RED); doc.setLineWidth(1); doc.line(ML,y,PW-MR,y); y+=8;
+
+      const name = document.getElementById('student-name').value.trim();
+      const company = document.querySelector('input[name="company"]:checked')?.value || '';
+      const strain = document.querySelector('input[name="strain"]:checked')?.value || '';
+      const companyInfo = document.getElementById('company-info').value.trim();
+      const industryInfo = document.getElementById('industry-info').value.trim();
+      const kw = document.getElementById('keywords-list').value.trim();
+      const ss = document.getElementById('search-string').value.trim();
+      const aiReflection = document.getElementById('ai-reflection').value.trim();
+
+      addField('Student Name', name);
+      addField('Activity Question', "How can Tony's Chocolonely scale its Open Chain model to drive industry-wide change in ethical cocoa sourcing, and what are the strategic trade-offs involved in sharing proprietary supply chain practices with competitors?");
+      addField('Company Selected', company);
+      addField('Research Strain Selected', strain);
+      addField('Company-Specific Information Brainstorm', companyInfo);
+      addField('Industry-Specific Information Brainstorm', industryInfo);
+      addField('Keywords List', kw);
+      addField('Database Search String', ss);
+      addField('AI Use Reflection', aiReflection);
+
+      checkSpace(36); y+=2;
+      doc.setFillColor(...INFOBL); doc.setDrawColor(126,184,247); doc.setLineWidth(0.3);
+      doc.roundedRect(ML,y,CW,32,2,2,'FD');
+      doc.setFillColor(...RED); doc.rect(ML,y,3,32,'F');
+      doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...BLUE);
+      doc.text('Reminder: AI Research Workflow',ML+7,y+8);
+      doc.setFont('helvetica','normal'); doc.setFontSize(8.5);
+      const reminder = 'Conduct research using library databases and reputable sources — not AI. Use the keywords and search string above as your starting point. AI may be used to clarify concepts and review your own writing, but research, synthesis, and analysis must be your own work.';
+      const remLines = doc.splitTextToSize(reminder,CW-12);
+      let ry = y+15;
+      remLines.forEach(line => { doc.text(line,ML+7,ry); ry+=4.5; }); y=ry+6;
+
+      const totalPages = doc.internal.getNumberOfPages();
+      for (let i=1; i<=totalPages; i++) { doc.setPage(i); drawPageFooter(i,totalPages); }
+      const safeName = (name||'student').replace(/[^a-z0-9]/gi,'_').replace(/_+/g,'_').toLowerCase();
+      doc.save('research_worksheet_'+safeName+'.pdf');
+      announce('Your worksheet PDF has been downloaded successfully.');
+    } catch(err) {
+      console.error('PDF error:',err);
+      announce('There was a problem generating the PDF. Please try again.');
+    }
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8M4 7l4 4 4-4M2 13h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Download Worksheet as PDF';
+    btn.disabled = false;
+  }
+
+  document.querySelectorAll('.step-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const step = parseInt(btn.dataset.step, 10);
+      if (btn.dataset.state === 'done') { goToStep(step); announce('Navigating back to step '+(step+1)+'.'); }
+    });
+  });
+</script>
+</body>
+</html>
